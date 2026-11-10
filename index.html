@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cut">
+<title>Водопоинт — вода 19 л с доставкой по Петербургу</title>
+<meta name="description" content="Артезианская питьевая вода Vodopoint Soft 19 л с доставкой на дом и в офис по Санкт-Петербургу. Чем больше бутылей, тем ниже цена: от 450 до 290 ₽ за бутыль.">
+<meta name="theme-color" content="#0B2C52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27%3E%3Cpath fill=%27%231764AA%27 d=%27M12 2s7 7.3 7 12.5a7 7 0 0 1-14 0C5 9.3 12 2 12 2Z%27/%3E%3Cpath fill=%27%23ED62A3%27 d=%27M8.5 15a3.5 3.5 0 0 0 3.5 3.5v-2A1.5 1.5 0 0 1 10.5 15z%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&family=Unbounded:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ED62A3;          /* фирменный розовый: только цена и действия */
+  --pink-ink:#3A0A22;      /* текст на розовом */
+  --blue:#1764AA;          /* фирменный синий */
+  --ice:#DCEFFF;
+  --deep:#0B2C52;          /* лёд в тени */
+  --abyss:#04162B;         /* вода подо льдом */
+  --frost:rgba(220,239,255,.14);
+  --rim:rgba(230,245,255,.42);
+  --text:#EAF5FF;
+  --dim:#A9C4DE;
+  --paper:#EEF5FA;         /* светлая секция: снег */
+  --ink:#0A1C30;
+  --ease:cubic-bezier(.16,1,.3,1);
+  --display:"Unbounded",system-ui,sans-serif;
+  --body:"Golos Text",system-ui,sans-serif;
+  --gut:clamp(20px,5vw,80px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scrollbar-color:#2D5C8F var(--abyss)}
+body{background:var(--abyss);color:var(--text);font-family:var(--body);font-size:17px;line-height:1.55;overflow-x:hidden;font-variant-numeric:tabular-nums}
+::selection{background:var(--pink);color:var(--pink-ink)}
+input,textarea{caret-color:var(--pink)}
+::-webkit-scrollbar{width:10px}::-webkit-scrollbar-track{background:var(--abyss)}::-webkit-scrollbar-thumb{background:#2D5C8F;border-radius:10px;border:2px solid var(--abyss)}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-underline-offset:.2em}
+button,input,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--pink);outline-offset:3px;border-radius:4px}
+
+/* ---------- кнопки ---------- */
+.act{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;cursor:pointer;text-decoration:none;
+  background:var(--pink);color:var(--pink-ink);font-weight:600;font-size:16px;border-radius:999px;padding:16px 28px;
+  transition:transform .3s var(--ease),filter .2s,box-shadow .3s}
+.act:hover{filter:brightness(1.07);box-shadow:0 10px 24px -12px rgba(2,12,26,.6)}
+.act:active{transform:scale(.97)}
+.ghost{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:500;color:var(--text);padding:14px 4px;border-bottom:1px solid var(--rim)}
+.ghost:hover{border-color:var(--text)}
+
+/* ---------- ледяная плита: материал мира ---------- */
+.slab{background:var(--frost);border:1px solid var(--rim);border-radius:6px;
+  -webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 30px 60px -30px rgba(2,12,26,.7)}
+
+/* ---------- шапка ---------- */
+.top{position:fixed;inset:0 0 auto;z-index:30;display:flex;align-items:center;gap:32px;padding:22px var(--gut);transition:background .4s,backdrop-filter .4s,padding .4s}
+.top.solid{background:rgba(4,22,43,.72);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);padding-top:14px;padding-bottom:14px}
+.logo{font-family:var(--display);font-weight:700;font-size:22px;letter-spacing:-.02em;text-decoration:none;color:#fff;line-height:1}
+.logo i{font-style:normal;color:var(--pink)}
+.nav{display:flex;gap:28px;margin-left:auto;font-size:15px}
+.nav a{text-decoration:none;color:var(--dim);transition:color .2s}
+.nav a:hover{color:#fff}
+.tel{font-weight:600;text-decoration:none;white-space:nowrap}
+.tel small{display:block;font-weight:400;font-size:12px;color:var(--dim)}
+
+/* ---------- первый экран ---------- */
+.hero{position:relative;height:100svh;min-height:680px;overflow:hidden}
+.hero-img,.frost{position:absolute;inset:0;width:100%;height:100%}
+.hero-img{object-fit:cover;object-position:60% 50%;transform-origin:60% 70%}
+.frost{pointer-events:none}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,22,43,.45) 0,transparent 22%,transparent 55%,rgba(4,22,43,.75) 100%)}
+.hero-in{position:absolute;inset:0;padding:clamp(110px,16vh,170px) var(--gut) clamp(28px,5vh,56px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);grid-template-rows:1fr auto;gap:24px 48px}
+.hero h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,6.4vw,96px);line-height:.98;letter-spacing:-.035em;color:#fff;text-wrap:balance;grid-column:1;align-self:start;text-shadow:0 2px 30px rgba(2,12,26,.25)}
+.hero .lead{grid-column:1;grid-row:2;align-self:end;max-width:30em;font-size:18px;color:#F2F8FF}
+.hero .lead b{font-weight:600}
+.calc{grid-column:2;grid-row:1 / 3;align-self:end;justify-self:end;width:min(100%,420px);padding:26px 26px 22px}
+.calc-q{font-size:15px;color:var(--dim);margin-bottom:12px}
+.count{display:flex;align-items:center;gap:14px}
+.step{width:48px;height:48px;border-radius:50%;border:1px solid var(--rim);background:rgba(255,255,255,.08);color:#fff;font-size:24px;line-height:1;cursor:pointer;flex:none;transition:background .2s,transform .2s var(--ease)}
+.step:hover{background:rgba(255,255,255,.18)}.step:active{transform:scale(.9)}
+.count output{font-family:var(--display);font-weight:600;font-size:56px;letter-spacing:-.04em;line-height:1;min-width:2.4ch;text-align:center}
+.count .u{font-size:15px;color:var(--dim);line-height:1.25}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:10px 0 6px;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:linear-gradient(to right,#fff var(--p,30%),rgba(255,255,255,.25) var(--p,30%))}
+input[type=range]::-moz-range-track{height:2px;background:rgba(255,255,255,.25)}
+input[type=range]::-moz-range-progress{height:2px;background:#fff}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;height:20px;border-radius:50%;background:#fff;margin-top:-9px;box-shadow:0 0 0 6px rgba(255,255,255,.15)}
+input[type=range]::-moz-range-thumb{width:20px;height:20px;border:0;border-radius:50%;background:#fff}
+.sum{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:14px 0 16px;border-top:1px solid rgba(255,255,255,.16);margin-top:6px}
+.sum b{font-family:var(--display);font-weight:600;font-size:34px;letter-spacing:-.03em;color:var(--pink)}
+.sum span{font-size:14px;color:var(--dim);text-align:right;line-height:1.35}
+.calc .act{width:100%}
+
+/* ---------- под лёд ---------- */
+.dive{position:relative;height:300vh}
+.dive-stage{position:sticky;top:0;height:100svh;overflow:hidden}
+.dive-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.dive-stage::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 30%,transparent 30%,rgba(4,22,43,.85) 100%)}
+.dive-copy{position:absolute;left:var(--gut);bottom:clamp(40px,10vh,110px);z-index:2;max-width:640px}
+.dive-copy h2{font-family:var(--display);font-weight:600;font-size:clamp(34px,4.4vw,64px);line-height:1.02;letter-spacing:-.03em}
+.dive-copy p{margin-top:18px;color:var(--dim);font-size:18px;max-width:30em}
+.pin{position:absolute;z-index:2;display:flex;align-items:center;gap:12px;font-size:15px;font-weight:500;color:#fff;white-space:nowrap;opacity:0}
+.pin::before{content:"";width:9px;height:9px;border-radius:50%;background:#fff;box-shadow:0 0 0 6px rgba(255,255,255,.18)}
+.pin::after{content:"";order:-1;position:absolute;left:4px;top:13px;width:1px;height:70px;background:linear-gradient(#fff,transparent)}
+
+/* ---------- лестница цен ---------- */
+.prices{padding:clamp(100px,16vh,170px) var(--gut) clamp(90px,14vh,150px);background:linear-gradient(180deg,var(--abyss),#06213F)}
+.prices-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:40px;align-items:end}
+.prices h2{font-family:var(--display);font-weight:600;font-size:clamp(32px,4vw,60px);line-height:1.02;letter-spacing:-.03em}
+.prices-head p{color:var(--dim);max-width:34em;justify-self:end}
+.floes{display:grid;grid-template-columns:repeat(10,1fr);gap:clamp(4px,.8vw,12px);align-items:end;margin-top:64px;height:360px}
+.floe{border:0;background:none;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;height:100%;gap:10px;padding:0;text-align:left;color:inherit}
+.floe i{display:block;height:calc(var(--k) * var(--u,2.6px));flex:none;border-radius:4px 4px 0 0;
+  background:linear-gradient(180deg,rgba(220,239,255,.42),rgba(120,180,235,.14));border:1px solid rgba(230,245,255,.38);border-bottom:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.55);transform-origin:50% 100%;transition:background .4s,border-color .4s,translate .5s var(--ease)}
+.floe b{font-family:var(--display);font-weight:600;font-size:clamp(14px,1.7vw,24px);letter-spacing:-.03em;transition:color .3s}
+.floe small{font-size:13px;color:var(--dim);white-space:nowrap}
+.floe:hover i{border-color:rgba(255,255,255,.7)}
+.floe.on i{background:linear-gradient(180deg,rgba(237,98,163,.75),rgba(237,98,163,.18));border-color:var(--pink);translate:0 -8px}
+.floe.on b{color:var(--pink)}
+.prices-foot{display:flex;flex-wrap:wrap;gap:16px 40px;align-items:center;margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.prices-foot .line{font-family:var(--display);font-size:clamp(20px,2vw,28px);letter-spacing:-.02em}
+.prices-foot .line em{font-style:normal;color:var(--pink)}
+.prices-foot .act{margin-left:auto}
+
+/* ---------- предложения ---------- */
+.offers{padding:clamp(90px,14vh,150px) var(--gut);background:#06213F}
+.offers-grid{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:48px}
+.offers h2{font-family:var(--display);font-weight:600;font-size:clamp(30px,3.4vw,52px);line-height:1.04;letter-spacing:-.03em;position:sticky;top:120px;align-self:start}
+.rows{list-style:none}
+.rows li{border-top:1px solid rgba(255,255,255,.14)}
+.rows li:last-child{border-bottom:1px solid rgba(255,255,255,.14)}
+.rows a{display:grid;grid-template-columns:1fr auto;gap:4px 24px;align-items:baseline;padding:26px 0;text-decoration:none;position:relative;transition:padding .4s var(--ease)}
+.rows a::before{content:"";position:absolute;inset:0 -16px;background:linear-gradient(90deg,rgba(220,239,255,.10),transparent);opacity:0;transition:opacity .4s;border-radius:4px}
+.rows a:hover{padding-left:14px}.rows a:hover::before{opacity:1}
+.rows b{font-size:clamp(19px,1.7vw,24px);font-weight:600}
+.rows .pr{font-family:var(--display);font-weight:600;font-size:clamp(22px,2.4vw,34px);letter-spacing:-.03em;color:var(--pink);grid-row:span 2;align-self:center}
+.rows span{color:var(--dim);font-size:15px}
+.rows-note{margin-top:22px;color:var(--dim);font-size:15px}
+
+/* ---------- светлая пауза: снег ---------- */
+.snow{background:var(--paper);color:var(--ink);padding:clamp(100px,16vh,170px) var(--gut)}
+.snow-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,6vw,96px);align-items:center}
+.snow figure img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;filter:grayscale(1) contrast(1.05)}
+.snow figcaption{margin-top:12px;font-size:14px;color:#4A6178}
+.snow h2{font-family:var(--display);font-weight:600;font-size:clamp(28px,3vw,46px);line-height:1.08;letter-spacing:-.03em;text-wrap:balance}
+.snow p{margin-top:20px;font-size:18px;color:#2C445C;max-width:34em}
+.quote{margin-top:clamp(80px,12vh,130px);display:grid;grid-template-columns:minmax(0,3fr) minmax(0,9fr);gap:40px;border-top:1px solid #C8D7E4;padding-top:40px}
+.quote cite{font-style:normal;font-size:15px;color:#4A6178;line-height:1.45}
+.quote cite b{display:block;color:var(--ink);font-size:17px}
+.quote blockquote{font-family:var(--display);font-weight:400;font-size:clamp(24px,2.8vw,42px);line-height:1.3;letter-spacing:-.025em;text-wrap:balance}
+.quote blockquote::before{content:"«"}.quote blockquote::after{content:"»"}
+
+/* ---------- заявка ---------- */
+.order{position:relative;padding:clamp(110px,16vh,170px) var(--gut);overflow:hidden}
+.order-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:blur(2px) brightness(.8);transform:scale(1.04)}
+.order::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,22,43,.85),rgba(4,22,43,.35));z-index:1}
+.order-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end}
+.order h2{font-family:var(--display);font-weight:700;font-size:clamp(36px,5vw,76px);line-height:.98;letter-spacing:-.035em;text-wrap:balance}
+.contacts{margin-top:40px;display:grid;gap:18px;font-size:15px;color:var(--dim)}
+.contacts a{font-family:var(--display);font-size:clamp(20px,2vw,28px);letter-spacing:-.02em;color:#fff;text-decoration:none;display:block}
+form{padding:30px;display:grid;gap:14px}
+.seg{display:flex;gap:4px;padding:4px;border-radius:999px;background:rgba(255,255,255,.08);width:max-content;max-width:100%}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0}
+.seg span{display:block;padding:8px 16px;border-radius:999px;font-size:14px;color:var(--dim);transition:background .3s,color .3s}
+.seg input:checked+span{background:#fff;color:var(--ink);font-weight:600}
+.seg input:focus-visible+span{outline:2px solid var(--pink)}
+.f{display:grid;gap:6px}
+.f label{font-size:13px;color:var(--dim)}
+.f input,.f textarea{width:100%;background:rgba(4,22,43,.35);border:1px solid rgba(230,245,255,.28);border-radius:4px;padding:13px 14px;font-size:16px;color:#fff;transition:border-color .2s}
+.f input::placeholder,.f textarea::placeholder{color:#8EA9C4}
+.f input:focus,.f textarea:focus{outline:none;border-color:#fff}
+.f input[aria-invalid=true]{border-color:var(--pink)}
+.f textarea{min-height:76px;resize:vertical}
+.err{font-size:13px;color:#FFB3D4}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fsum{font-size:15px;color:var(--dim)}.fsum b{color:var(--pink);font-family:var(--display);font-weight:600}
+.note{font-size:12px;color:#8EA9C4}
+.done{text-align:center;padding:30px 6px}
+.done h3{font-family:var(--display);font-weight:600;font-size:26px;margin-bottom:8px}
+.done p{color:var(--dim)}
+
+footer{padding:28px var(--gut) 40px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-size:13px;color:#7F9AB5;border-top:1px solid rgba(255,255,255,.08)}
+
+.dock{display:none}
+
+/* ---------- адаптив ---------- */
+@media (max-width:1020px){
+  .nav{display:none}.tel{margin-left:auto}
+  .hero-in{grid-template-columns:1fr;grid-template-rows:auto 1fr auto;padding-top:110px}
+  .hero .lead{grid-row:2;align-self:start;margin-top:4px}
+  .calc{grid-column:1;grid-row:3;justify-self:stretch;width:100%}
+  .prices-head,.offers-grid,.snow-grid,.order-grid,.quote{grid-template-columns:1fr}
+  .prices-head p{justify-self:start}
+  .offers h2{position:static}
+}
+@media (max-width:640px){
+  body{font-size:16px}
+  .top{padding:14px 18px}.logo{font-size:18px}.tel{font-size:15px;text-align:right}
+  .hero{min-height:640px}
+  .hero-in{padding:92px 18px 18px;gap:14px}
+  .hero h1{font-size:clamp(36px,11vw,52px)}
+  .hero .lead{font-size:16px}
+  .calc{padding:18px 18px 16px}
+  .count output{font-size:44px}
+  .sum b{font-size:28px}
+  .pin{font-size:12px;white-space:normal;max-width:44vw;line-height:1.3}
+  .pin:nth-of-type(3){left:52%!important;top:40%!important}
+  .floes{height:240px;gap:3px;margin-top:40px}
+  .floe small{font-size:10px}
+  .floe{--u:1.6px}
+  .floe small span{display:none}
+  .prices-foot .act{margin-left:0;width:100%}
+  .rows a{padding:20px 0}
+  .row2{grid-template-columns:1fr}
+  form{padding:20px}
+  footer{padding-bottom:100px}
+  .dock{display:flex;gap:8px;position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;padding:6px;border-radius:999px;transform:translateY(150%);transition:transform .45s var(--ease)}
+  .dock.on{transform:none}
+  .dock a{flex:1;padding:13px 10px}
+  .dock .ghost{justify-content:center;border:0}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .pin{opacity:1}
+}
+</style>
+</head>
+<body>
+
+<header class="top" id="top">
+  <a class="logo" href="#" aria-label="Водопоинт, в начало">VODO<i>POINT</i></a>
+  <nav class="nav" aria-label="Разделы">
+    <a href="#prices">Цены</a><a href="#offers">Акции</a><a href="#story">О воде</a><a href="#order">Контакты</a>
+  </nav>
+  <a class="tel" href="tel:+78129031600">(812) 903-16-00<small>Пн–Пт 9:00–18:00</small></a>
+</header>
+
+<main>
+<section class="hero" aria-labelledby="h1">
+  <img class="hero-img" id="heroImg" src="img/hero.jpg" alt="Замёрзшая Нева на розовом рассвете, вдали шпиль Петропавловской крепости" width="1920" height="1080" fetchpriority="high">
+  <canvas class="frost" id="frost" aria-hidden="true"></canvas>
+  <div class="hero-shade"></div>
+  <div class="hero-in">
+    <h1 id="h1">Чистая,<br>как невский лёд</h1>
+    <p class="lead">Артезианская вода Vodopoint Soft в бутылях по&nbsp;19&nbsp;литров. Привозим домой и в офис по Петербургу с 2009 года. <b>Чем больше бутылей, тем ниже цена.</b></p>
+    <div class="calc slab" aria-labelledby="calc-q">
+      <p class="calc-q" id="calc-q">Сколько бутылей привезти?</p>
+      <div class="count">
+        <button class="step" type="button" data-d="-1" aria-label="Меньше на одну">−</button>
+        <output id="n" aria-live="polite">20</output>
+        <button class="step" type="button" data-d="1" aria-label="Больше на одну">+</button>
+        <span class="u" id="unit">бутылей<br>по 19 л</span>
+      </div>
+      <input type="range" id="range" min="1" max="60" value="20" aria-label="Количество бутылей">
+      <div class="sum"><b id="sum">6 400 ₽</b><span id="per">по 320 ₽ за бутыль<br>доставка в цене</span></div>
+      <a class="act" href="#order" data-order id="cta">Заказать 20 бутылей</a>
+    </div>
+  </div>
+</section>
+
+<section class="dive" id="story" aria-labelledby="dive-h">
+  <div class="dive-stage">
+    <img id="underImg" src="img/under.jpg" alt="Вид из-под воды вверх на лёд, сквозь трещины пробивается розовый свет" width="1920" height="1080" loading="lazy">
+    <span class="pin" style="left:12%;top:20%">Артезианская вода из скважины</span>
+    <span class="pin" style="left:63%;top:12%">Розлив на заводе</span>
+    <span class="pin" style="left:74%;top:44%">Каждая бутыль промаркирована</span>
+    <span class="pin" style="left:8%;top:46%">Декларация и сертификаты на воду</span>
+    <div class="dive-copy">
+      <h2 id="dive-h">Подо льдом всегда живая вода</h2>
+      <p>Наша вода приходит из артезианской скважины и разливается на заводе. Каждый день, в любую погоду, сотни бутылей по Петербургу.</p>
+    </div>
+  </div>
+</section>
+
+<section class="prices" id="prices" aria-labelledby="prices-h">
+  <div class="prices-head">
+    <h2 id="prices-h">Чем больше заказ, тем тоньше цена</h2>
+    <p>Цена за бутыль 19 л уже с доставкой. Нажмите на льдину или сдвиньте ползунок наверху: цифры пересчитаются везде.</p>
+  </div>
+  <div class="floes" id="floes" role="group" aria-label="Цена за бутыль в зависимости от количества"></div>
+  <div class="prices-foot">
+    <p class="line" id="line">20 бутылей по <em>320 ₽</em>, экономия 2 600 ₽</p>
+    <a class="act" href="#order" data-order id="cta2">Заказать 20 бутылей</a>
+  </div>
+</section>
+
+<section class="offers" id="offers" aria-labelledby="offers-h">
+  <div class="offers-grid">
+    <h2 id="offers-h">Для первого заказа и для офиса</h2>
+    <div>
+      <ul class="rows">
+        <li><a href="#order" data-order data-qty="2" data-note="Вода на пробу: 2 бутыли за 300 ₽"><b>Вода на пробу</b><em class="pr" style="font-style:normal">300 ₽</em><span>две бутыли, чтобы попробовать</span></a></li>
+        <li><a href="#order" data-order data-qty="2" data-note="Помпа и 2 бутыли воды за 490 ₽"><b>Помпа и 2 бутыли</b><em class="pr" style="font-style:normal">490 ₽</em><span>если кулер пока не нужен</span></a></li>
+        <li><a href="#order" data-order data-qty="5" data-note="Кулер и 5 бутылей за 6 900 ₽"><b>Кулер и 5 бутылей</b><em class="pr" style="font-style:normal">6 900 ₽</em><span>для новых клиентов</span></a></li>
+        <li><a href="#order" data-order data-qty="20" data-who="org" data-note="Аренда кулера: от 20 бутылей в месяц"><b>Кулер в аренду бесплатно</b><em class="pr" style="font-style:normal">0 ₽</em><span>при заказе от 20 бутылей в месяц</span></a></li>
+        <li><a href="#order" data-order data-who="org" data-note="Вода в школу или детский сад, 300 ₽ за бутыль"><b>Школам и детским садам</b><em class="pr" style="font-style:normal">300 ₽</em><span>за бутыль</span></a></li>
+        <li><a href="#order" data-order data-note="Нужна санитарная обработка кулера"><b>Чистка кулера</b><em class="pr" style="font-style:normal">по заявке</em><span>советуем раз в три месяца</span></a></li>
+      </ul>
+      <p class="rows-note">Нажмите на строку, и она попадёт в заявку. Условия уточняйте по телефону.</p>
+    </div>
+  </div>
+</section>
+
+<section class="snow" aria-labelledby="snow-h">
+  <div class="snow-grid">
+    <figure>
+      <img src="img/cart.jpg" alt="Петербургский водовоз начала XX века с бочкой на телеге" width="800" height="500" loading="lazy">
+      <figcaption>Водовоз с бочкой, начало XX века</figcaption>
+    </figure>
+    <div>
+      <h2 id="snow-h">Зимой в Петербурге воду возили льдом</h2>
+      <p>До водопровода из Невы выпиливали огромные льдины и развозили по домам на санях. Теперь лёд не нужен: мы привозим готовую артезианскую воду в бутылях, домой и в офис.</p>
+    </div>
+  </div>
+  <div class="quote">
+    <cite><b>Сергей Чиграков</b>«Чиж», группа «Чиж & Co»</cite>
+    <blockquote>Ребята! Большое вам спасибо! Отличная работа, отличная вода. Ждём вас всегда!</blockquote>
+  </div>
+</section>
+
+<section class="order" id="order" aria-labelledby="order-h">
+  <img class="order-bg" src="img/hero.jpg" alt="" loading="lazy" width="1920" height="1080">
+  <div class="order-grid">
+    <div>
+      <h2 id="order-h">Оставьте номер, остальное сделаем мы</h2>
+      <div class="contacts">
+        <div><a href="tel:+78129031600">(812) 903-16-00</a>Пн–Пт 9:00–18:00, в субботу только доставка</div>
+        <div><a href="mailto:mail@vodopoint.ru">mail@vodopoint.ru</a>Санкт-Петербург, пр. Энгельса, 74, корп. 2</div>
+      </div>
+    </div>
+    <form class="slab" id="form" novalidate>
+      <div class="seg" role="radiogroup" aria-label="Куда привезти">
+        <label><input type="radio" name="who" value="home" checked><span>Домой</span></label>
+        <label><input type="radio" name="who" value="org"><span>В офис или организацию</span></label>
+      </div>
+      <div class="row2">
+        <div class="f"><label for="f-tel">Телефон</label><input id="f-tel" name="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__"><span class="err" id="tel-err"></span></div>
+        <div class="f"><label for="f-name">Имя</label><input id="f-name" name="name" autocomplete="name" placeholder="Как к вам обращаться"></div>
+      </div>
+      <div class="f" id="company-row" hidden><label for="f-company">Компания</label><input id="f-company" name="company" autocomplete="organization"></div>
+      <div class="f"><label for="f-addr">Адрес доставки</label><input id="f-addr" name="addr" autocomplete="street-address" placeholder="Улица, дом, квартира или офис"></div>
+      <div class="f"><label for="f-msg">Комментарий</label><textarea id="f-msg" name="msg" placeholder="Этаж, домофон, удобное время"></textarea></div>
+      <p class="fsum" id="fsum"></p>
+      <button class="act" type="submit">Отправить заявку</button>
+      <p class="note">Нажимая кнопку, вы соглашаетесь на обработку персональных данных для оформления доставки.</p>
+    </form>
+  </div>
+</section>
+</main>
+
+<footer><span>© 2012–2026 ООО «Водопоинт». Питьевая вода 19 л с доставкой по Санкт-Петербургу.</span><a href="mailto:mail@vodopoint.ru">mail@vodopoint.ru</a></footer>
+
+<div class="dock slab" id="dock"><a class="ghost" href="tel:+78129031600">Позвонить</a><a class="act" href="#order" data-order>Заказать</a></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const TIERS=[{f:1,t:2,p:450,l:'1–2'},{f:3,t:3,p:430,l:'3'},{f:4,t:4,p:410,l:'4'},{f:5,t:5,p:400,l:'5'},{f:6,t:7,p:390,l:'6–7'},{f:8,t:9,p:380,l:'8–9'},{f:10,t:19,p:360,l:'10+'},{f:20,t:29,p:320,l:'20+'},{f:30,t:49,p:300,l:'30+'},{f:50,t:1e9,p:290,l:'50+'}];
+const MAX=60, BASE=450;
+const rub=n=>n.toLocaleString('ru-RU').replace(/ /g,' ')+' ₽';
+const ti=n=>TIERS.findIndex(t=>n>=t.f&&n<=t.t);
+const pl=(n,a,b,c)=>{const x=n%10,y=n%100;return x===1&&y!==11?a:x>=2&&x<=4&&(y<10||y>=20)?b:c};
+const bot=n=>pl(n,'бутыль','бутыли','бутылей');
+
+/* ---------- один контрол на всю страницу ---------- */
+const range=$('#range'), floesEl=$('#floes');
+const floes=TIERS.map(t=>{const b=document.createElement('button');b.type='button';b.className='floe';
+  b.innerHTML=`<b>${t.p}</b><i style="--k:${Math.round((t.p-200)/250*100)}"></i><small>${t.l}<span> шт.</span></small>`;
+  b.setAttribute('aria-label',`${t.l} шт., ${t.p} рублей за бутыль`);b.onclick=()=>set(t.f===1?2:t.f);floesEl.appendChild(b);return b});
+let n=20;
+function set(v){
+  n=Math.max(1,Math.min(MAX,Math.round(v)||1));
+  range.value=n;range.style.setProperty('--p',((n-1)/(MAX-1)*100)+'%');
+  const i=ti(n),t=TIERS[i],save=(BASE-t.p)*n;
+  $('#n').textContent=n;$('#unit').innerHTML=`${bot(n)}<br>по 19 л`;
+  $('#sum').textContent=rub(t.p*n);
+  $('#per').innerHTML=`по ${t.p} ₽ за бутыль<br>${save>0?'экономия '+rub(save):'доставка в цене'}`;
+  $('#line').innerHTML=`${n} ${bot(n)} по <em>${t.p} ₽</em>${save>0?', экономия '+rub(save):', доставка в цене'}`;
+  ['#cta','#cta2'].forEach(s=>$(s).textContent=`Заказать ${n} ${bot(n)}`);
+  floes.forEach((f,k)=>f.classList.toggle('on',k===i));
+  if(!note)formSum();
+}
+range.addEventListener('input',e=>set(+e.target.value));
+$$('.count .step').forEach(b=>b.onclick=()=>set(n+ +b.dataset.d));
+
+/* ---------- иней тает под курсором ---------- */
+const cv=$('#frost'), ctx=cv.getContext('2d'), heroImg=$('#heroImg');
+let frostTex=null, W=0, H=0, dpr=Math.min(devicePixelRatio||1,1.5);
+function buildFrost(){
+  if(!heroImg.complete||!heroImg.naturalWidth)return;
+  const r=cv.getBoundingClientRect();W=Math.round(r.width*dpr);H=Math.round(r.height*dpr);cv.width=W;cv.height=H;
+  frostTex=document.createElement('canvas');frostTex.width=W;frostTex.height=H;const f=frostTex.getContext('2d');
+  // та же картинка, как в hero (object-fit:cover, 60% 50%)
+  const iw=heroImg.naturalWidth, ih=heroImg.naturalHeight, s=Math.max(W/iw,H/ih), dw=iw*s, dh=ih*s;
+  f.filter='blur(9px) brightness(1.12) saturate(.7)';f.drawImage(heroImg,(W-dw)*.6,(H-dh)*.5,dw,dh);f.filter='none';
+  f.fillStyle='rgba(225,240,255,.12)';f.fillRect(0,0,W,H);
+  // иней только на льду: снизу вверх растворяется
+  f.globalCompositeOperation='destination-in';const g=f.createLinearGradient(0,H*.6,0,H);g.addColorStop(0,'rgba(0,0,0,0)');g.addColorStop(1,'rgba(0,0,0,.8)');f.fillStyle=g;f.fillRect(0,0,W,H);
+  ctx.clearRect(0,0,W,H);ctx.drawImage(frostTex,0,0);
+}
+let px=-1,py=-1,last=0;
+function melt(x,y,rad){const g=ctx.createRadialGradient(x,y,0,x,y,rad);g.addColorStop(0,'rgba(0,0,0,.9)');g.addColorStop(1,'rgba(0,0,0,0)');ctx.globalCompositeOperation='destination-out';ctx.fillStyle=g;ctx.beginPath();ctx.arc(x,y,rad,0,7);ctx.fill();ctx.globalCompositeOperation='source-over'}
+function tick(ts){
+  if(frostTex&&ts-last>80){ctx.globalAlpha=.02;ctx.drawImage(frostTex,0,0);ctx.globalAlpha=1;last=ts} // иней медленно нарастает обратно
+  requestAnimationFrame(tick);
+}
+function onMove(e){const r=cv.getBoundingClientRect(),p=e.touches?e.touches[0]:e;const x=(p.clientX-r.left)*dpr,y=(p.clientY-r.top)*dpr;
+  if(!frostTex||y<0||y>H)return;const rad=90*dpr;
+  if(px<0){melt(x,y,rad)}else{const d=Math.hypot(x-px,y-py),st=Math.max(1,Math.ceil(d/(rad*.3)));for(let k=1;k<=st;k++)melt(px+(x-px)*k/st,py+(y-py)*k/st,rad)}
+  px=x;py=y}
+if(!RM){
+  heroImg.complete?buildFrost():heroImg.addEventListener('load',buildFrost);
+  addEventListener('resize',()=>{clearTimeout(window._rf);window._rf=setTimeout(buildFrost,200)});
+  $('.hero').addEventListener('pointermove',onMove);$('.hero').addEventListener('pointerleave',()=>{px=-1});
+  $('.hero').addEventListener('touchmove',onMove,{passive:true});
+  requestAnimationFrame(tick);
+}
+
+/* ---------- сцена: уход под лёд ---------- */
+if(window.gsap&&!RM){
+  gsap.registerPlugin(ScrollTrigger);
+  // один авторский момент на загрузке: заголовок проступает, плита калькулятора всплывает
+  gsap.from('.hero h1',{y:24,opacity:0,filter:'blur(8px)',duration:1.4,ease:'expo.out',delay:.1});
+  gsap.from('.hero .lead',{y:16,opacity:0,duration:1.2,ease:'expo.out',delay:.35});
+  gsap.from('.calc',{y:40,opacity:0,duration:1.4,ease:'expo.out',delay:.5});
+  // при прокрутке камера приближается ко льду
+  gsap.to('#heroImg',{scale:1.25,yPercent:6,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}});
+  gsap.to('.hero-in',{opacity:0,y:-60,ease:'none',scrollTrigger:{trigger:'.hero',start:'30% top',end:'85% top',scrub:true}});
+  // под водой: свет проступает, отметки появляются одна за другой
+  const tl=gsap.timeline({scrollTrigger:{trigger:'.dive',start:'top top',end:'bottom bottom',scrub:.6}});
+  tl.fromTo('#underImg',{scale:1.18,filter:'brightness(.35) blur(6px)'},{scale:1,filter:'brightness(1) blur(0px)',duration:1,ease:'none'})
+    .from('.dive-copy',{y:50,opacity:0,duration:.5},'<.3');
+  $$('.pin').forEach((p,k)=>tl.fromTo(p,{opacity:0,y:20},{opacity:1,y:0,duration:.3},.5+k*.25));
+  tl.to({},{duration:.6});
+  // льдины лестницы цен поднимаются
+  gsap.fromTo('.floe i',{scaleY:.02},{scaleY:1,stagger:.05,duration:1.1,ease:'expo.out',clearProps:'transform',scrollTrigger:{trigger:'.floes',start:'top 85%'}});
+}else{$$('.pin').forEach(p=>p.style.opacity=1)}
+
+/* ---------- форма ---------- */
+const form=$('#form'), tel=$('#f-tel');let note='', fq=20;
+function formSum(){const q=note?fq:n,t=TIERS[ti(q)];$('#fsum').innerHTML=note?`<b>${note}</b>`:`${q} ${bot(q)} × ${t.p} ₽ = <b>${rub(q*t.p)}</b>`}
+$$('[data-order]').forEach(a=>a.addEventListener('click',()=>{
+  note=a.dataset.note||'';fq=+(a.dataset.qty||n);$('#f-msg').value=note;
+  const w=a.dataset.who||'home';form.who.value=w;$('#company-row').hidden=w!=='org';formSum();
+  setTimeout(()=>tel.focus({preventScroll:true}),700);
+}));
+form.querySelectorAll('[name=who]').forEach(r=>r.onchange=()=>{$('#company-row').hidden=form.who.value!=='org'});
+tel.addEventListener('input',()=>{let d=tel.value.replace(/\D/g,'');if(d.startsWith('8'))d='7'+d.slice(1);if(!d.startsWith('7'))d='7'+d;d=d.slice(0,11);
+  const p=[d.slice(1,4),d.slice(4,7),d.slice(7,9),d.slice(9,11)];
+  tel.value='+7'+(p[0]?` (${p[0]}`:'')+(p[0].length===3?')':'')+(p[1]?` ${p[1]}`:'')+(p[2]?`-${p[2]}`:'')+(p[3]?`-${p[3]}`:'');
+  tel.removeAttribute('aria-invalid');$('#tel-err').textContent=''});
+form.addEventListener('submit',e=>{e.preventDefault();
+  if(tel.value.replace(/\D/g,'').length<11){tel.setAttribute('aria-invalid','true');$('#tel-err').textContent='Введите номер полностью, 10 цифр после +7';tel.focus();return}
+  const data=Object.fromEntries(new FormData(form));
+  // TODO: подключить отправку заявки (почта, CRM или Telegram-бот компании)
+  console.log('Заявка',data);
+  form.innerHTML=`<div class="done"><h3>Заявка отправлена</h3><p>Перезвоним на ${data.tel} в рабочее время и договоримся о доставке.</p></div>`});
+
+/* ---------- шапка и нижняя панель ---------- */
+const top_=$('#top'), dock=$('#dock'), orderSec=$('#order');
+addEventListener('scroll',()=>{const y=scrollY;top_.classList.toggle('solid',y>innerHeight*.6);
+  dock.classList.toggle('on',y>innerHeight*.9&&orderSec.getBoundingClientRect().top>innerHeight*.5)},{passive:true});
+
+set(20);
+</script>
+</body>
+</html>
